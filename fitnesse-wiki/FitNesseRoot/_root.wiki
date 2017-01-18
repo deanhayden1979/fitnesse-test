@@ -1,0 +1,2 @@
+!path C:\calypso\calypso-15.0.0.13\custom-extensions\custom-projects\fitnesse\bin\
+!define TEST_SYSTEM {slim}

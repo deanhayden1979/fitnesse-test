@@ -1,0 +1,5 @@
+##FitNesse properties
+#Tue Jan 10 17:26:22 GMT 2017
+Version=v20161106
+VersionsController=fitnesse.wiki.fs.GitFileVersionsController
+RecentChanges=fitnesse.wiki.fs.GitFileVersionsController

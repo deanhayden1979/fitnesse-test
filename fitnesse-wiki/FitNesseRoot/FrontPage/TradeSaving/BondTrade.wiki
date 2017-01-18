@@ -1,0 +1,37 @@
+---
+Test
+---
+Given a bond trade with eur ccy 
+
+When that trade is uploaded.
+
+Then check two transfers are created in verified status one for security and one for settlement 
+
+
+
+!2 Given this bond trade.
+
+$variablex = 1212,eur,eur,123123123123,repobook,hsbc,cyb,assad,asdasd,adasda
+
+
+!2 When upload the trade to calypso
+
+|com.accenture.fitnesse.BondFixture|
+|csv|getTradeId?|
+|$variablex|$tradeId=|
+|$tradeId|>0|
+
+
+!2 Then test.
+
+|com.accenture.fitnesse.BondAttributesFixture|
+|tradeId|tradeStatus?|noOfKeywords?|
+|$tradeId|Verified|8|
+
+|com.accenture.fitnesse.BOTransferFixture|
+|tradeId|transferStatus?|
+|$tradeId|Verified|
+
+|com.accenture.fitnesse.BOMessageFixture|
+|tradeId|messageType?|messageStatus?|
+|$tradeId|SWIFT|Verified|

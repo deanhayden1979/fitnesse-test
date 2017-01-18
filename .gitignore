@@ -1,5 +1,5 @@
 /bin/
 /target/
-/fitnesse-wiki/FitNesseRoot/files/
-/fitnesse-wiki/FitNesseRoot/ErrorLog/
+/fitnesse-wiki/FitNesseRoot/files
+/fitnesse-wiki/FitNesseRoot/ErrorLog
 /fitnesse-wiki/FitNesseRoot/*.zip
