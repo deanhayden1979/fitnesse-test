@@ -1,4 +1,4 @@
-package com.accenture.fitnesse.connection;
+package fitnesse.com.accenture.connection;
 
 import com.calypso.tk.core.Log;
 import com.calypso.tk.service.DSConnection;
@@ -19,11 +19,11 @@ public class ConnectToCalypsoInstance {
     private String user;
 
     private ConnectToCalypsoInstance() {
-        this(formatUserName("username"), "password", "TaskRunner");
+        this("admin", "calypso", "TaskRunner");
     }
 
     private String getEnvironment() {
-        Resource resource = new ClassPathResource("/system.properties");
+        Resource resource = new ClassPathResource("./resource/system.properties");
         String env = "";
         try {
             Properties props = PropertiesLoaderUtils.loadProperties(resource);
@@ -38,7 +38,7 @@ public class ConnectToCalypsoInstance {
         DSConnection ds = null;
         this.user = user;
         try {
-            ds = ConnectionUtil.connect(formatUserName(user), pwd, appName, getEnvironment());
+            ds = ConnectionUtil.connect(user, pwd, appName, "v15");
         } catch (ConnectException ex) {
             Log.error(Log.CALYPSOX, "Unable to obtain connection to DataServer", ex);
             throw new RuntimeException("Unable to obtain connection to DataServer", ex);
@@ -64,17 +64,6 @@ public class ConnectToCalypsoInstance {
         ConnectionUtil.shutdown();
     }
 
-    public static String formatUserName(String userName) {
-        String os_name = System.getProperty("os.name");
-        // we are running on the windows platform
-        if (os_name.startsWith("Windows")) {
-            return userName.startsWith("corp") ? userName.replace("corp\\", "") : userName;
-        }
-
-        // we are running on the unix platform
-        return userName.startsWith("corp") ? userName : "corp\\" + userName;
-    }
-    
     public String getUser()
     {
     	return this.user;
